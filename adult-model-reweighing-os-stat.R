@@ -5,6 +5,8 @@ library("mlr3fairness")
 library("ggplot2")
 library("ggmosaic")
 library("gridExtra")
+library("weights")#wtd.hist
+library("questionr")#wtd.table two-way
 
 setwd("path/to/r-scripts")
 
@@ -74,6 +76,21 @@ p2 <- ggplot(adult_os, aes(age, fill = income)) + #, weight = fnlwgt
   stat_bin(binwidth = 5, center = 2.5)
 
 grid.arrange(p1, p2, ncol=2)
+
+# hist by class
+p1 <- ggplot(adult_os[which(adult_os$income == ">50K"),], aes(age, fill = income)) + #, weight = fnlwgt
+  stat_bin(binwidth = 5, center = 2.5) + 
+  coord_cartesian(ylim = c(0, 6000))
+
+p2 <- ggplot(adult_os[which(adult_os$income == "<=50K"),], aes(age, fill = income)) + #, weight = fnlwgt
+  stat_bin(binwidth = 5, center = 2.5) + 
+  coord_cartesian(ylim = c(0, 6000))
+
+grid.arrange(p1, p2, ncol=2)
+
+ggplot(adult_os, aes(age, fill = income)) + 
+  stat_bin(binwidth = 5, center = 2.5, data=adult_os[which(adult_os$income == "<=50K"),]) + 
+  stat_bin(binwidth = 5, center = 2.5, data=adult_os[which(adult_os$income == ">50K"),])
 
 ###
 # V2 workclass Private, Self-emp-not-inc, Self-emp-inc, Federal-gov, Local-gov, State-gov, Without-pay, Never-worked
@@ -319,6 +336,21 @@ p2 <- ggplot(adult_os, aes(hours_per_week, fill = income)) + #, weight = fnlwgt
   stat_bin(binwidth = 5, center = 2.5)
 
 grid.arrange(p1, p2, ncol=2)
+
+# hist by class
+p1 <- ggplot(adult_os[which(adult_os$income == ">50K"),], aes(hours_per_week, fill = income)) + #, weight = fnlwgt
+  stat_bin(binwidth = 5, center = 2.5) + 
+  coord_cartesian(ylim = c(0, 20000))
+
+p2 <- ggplot(adult_os[which(adult_os$income == "<=50K"),], aes(hours_per_week, fill = income)) + #, weight = fnlwgt
+  stat_bin(binwidth = 5, center = 2.5) + 
+  coord_cartesian(ylim = c(0, 20000))
+
+grid.arrange(p1, p2, ncol=2)
+
+ggplot(adult_os, aes(hours_per_week, fill = income)) + 
+  stat_bin(binwidth = 5, center = 2.5, data=adult_os[which(adult_os$income == "<=50K"),]) + 
+  stat_bin(binwidth = 5, center = 2.5, data=adult_os[which(adult_os$income == ">50K"),])
 
 ###
 # V14 native-country United-States, Cambodia, England, Puerto-Rico, Canada, Germany, Outlying-US(Guam-USVI-etc), India, Japan, Greece, South, China, Cuba, Iran, Honduras, Philippines, Italy, Poland, Jamaica, Vietnam, Mexico, Portugal, Ireland, France, Dominican-Republic, Laos, Ecuador, Taiwan, Haiti, Columbia, Hungary, Guatemala, Nicaragua, Scotland, Thailand, Yugoslavia, El-Salvador, Trinadad&Tobago, Peru, Hong, Holand-Netherlands
