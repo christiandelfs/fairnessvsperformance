@@ -6,8 +6,7 @@ library("weights")#wtd.hist
 library("questionr")#wtd.table two-way
 #library("DescTools")#weighted summary/quantile
 
-#setwd("C:\\Users\\User\\Documents\\HOST\\7-Semester\\Datasets\\Adult\\adult")
-setwd("C:\\Users\\User\\Documents\\HOST\\7-Semester\\Thesis\\r-scripts")
+setwd("path/to/r-scripts")
 
 # V1  V2        V3      V4        V5            V6              V7          V8            V9    V10 V11           V12           V13             V14             V15
 # age workclass fnlwgt  education education-num marital-status  occupation  relationship  race  sex capital-gain  capital-loss  hours-per-week  native-country  

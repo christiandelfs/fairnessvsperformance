@@ -8,7 +8,7 @@ library("gridExtra")
 library("weights")#wtd.hist
 library("questionr")#wtd.table two-way
 
-setwd("C:\\Users\\User\\Documents\\HOST\\7-Semester\\Thesis\\r-scripts")
+setwd("path/to/r-scripts")
 
 set.seed(4)
 
