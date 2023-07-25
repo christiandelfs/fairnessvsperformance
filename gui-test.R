@@ -2,7 +2,7 @@ library("mlr3")
 library("mlr3learners")
 library("mlr3fairness")
 
-setwd("path/to/r-scripts")
+setwd("C:\\Users\\User\\Documents\\HOST\\7-Semester\\Thesis\\r-scripts")
 
 # load dataset
 source("sgc.R")
@@ -48,6 +48,9 @@ sgc_ranger_prd = sgc_ranger$predict(sgc_task, split$test)
 sgc_ranger_prd_score <- sgc_ranger_prd$score(msr("fairness.gui"), task = sgc_task)
 sgc_ranger_prd_score
 
+# fairness.pp_np 
+# 0.7705463 
+
 # predict_newdata on sgc_task_test
 sgc_task_test <- TaskClassif$new(id = "sgc_test",
                             backend = sgc[split$test,],
@@ -72,5 +75,8 @@ unfairness <- function(yhat = pds > 0.3, protected = test$gender){
 }
 
 unfairness(yhat = sgc_ranger_prd$response, protected = sgc[split$test,]$sex)
+
+# ifelse(sgc_ranger_prd$prob[,"good"] > 0.5, "good", "bad")
+# sgc_ranger_prd$response
 
 # [1] 0.7705463
