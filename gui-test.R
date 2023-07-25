@@ -2,7 +2,7 @@ library("mlr3")
 library("mlr3learners")
 library("mlr3fairness")
 
-setwd("C:\\Users\\User\\Documents\\HOST\\7-Semester\\Thesis\\r-scripts")
+setwd("path/to/r-scripts")
 
 # load dataset
 source("sgc.R")
